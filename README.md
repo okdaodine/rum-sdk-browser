@@ -169,3 +169,7 @@ import SDK from 'rum-sdk-browser';
 //   Version: "1.0.0",
 // }]
 ```
+
+## More examples
+
+You can check data format and more real world examples in https://docs.rumsystem.net/docs/data-format-and-examples/
