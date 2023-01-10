@@ -1,5 +1,5 @@
 # rum-sdk-browser
-Rum SDK for nodejs
+Rum SDK for browser
 
 ## Install
 ```
