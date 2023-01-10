@@ -111,11 +111,11 @@ const ethers = require('ethers');
 (async () => {
   const wallet = ethers.Wallet.createRandom();
   const result = await SDK.chain.Trx.create({
-    groupId: '8136923b-8203-4e08-bfe7-50eb3b558e2c',
     object: {
       type: 'Note',
       content: 'send from JavaScript SDK',
     },
+    groupId: '8136923b-8203-4e08-bfe7-50eb3b558e2c',
     privateKey: wallet.privateKey,
   });
   console.log(result);
