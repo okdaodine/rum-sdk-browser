@@ -14,18 +14,18 @@ export default {
   cache,
   chain,
   utils,
-  ethers
+  ethers,
 };
 
 export {
   cache,
   chain,
   utils,
-  ethers
+  ethers,
 }
 
 if (typeof window !== 'undefined') {
-  (window as any).QuorumLightNodeSDK = {
+  (window as any).RUM_SDK = {
     cache,
     chain,
     utils,

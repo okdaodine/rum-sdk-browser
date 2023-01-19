@@ -2,9 +2,9 @@
 .DS_Store
 node_modules
 dist
-test/browser/node_modules
-test/browser/.cache
-test/browser/dist
-test/browser/yarn.lock
+test/node_modules
+test/.cache
+test/dist
+test/yarn.lock
 local_storage_data
 proto.json

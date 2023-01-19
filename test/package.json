@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel index.html"
+    "dev-public-group": "parcel publicGroup.html",
+    "dev-private-group": "parcel privateGroup.html"
   },
   "keywords": [],
   "author": "raimonfuns",

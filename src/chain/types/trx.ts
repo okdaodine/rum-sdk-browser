@@ -21,6 +21,7 @@ export interface ICreateActivityPayload {
   version?: string;
   timestamp?: number
   aesKey?: string;
+  agePublicKeys?: string[];
   privateKey?: string;
   publicKey?: string
   sign?: (hash: string) => string | Promise<string>

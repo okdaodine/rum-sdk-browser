@@ -24,7 +24,7 @@ export const encrypt = async (buffer: Uint8Array, key: string) => {
   const nonceCipherTextTag = new Uint8Array(nonce.length + cipherTextTag.length);
   nonceCipherTextTag.set(nonce);
   nonceCipherTextTag.set(cipherTextTag, nonce.length);
-  return nonceCipherTextTag.buffer
+  return new Uint8Array(nonceCipherTextTag.buffer)
 }
 
 export const decrypt = async (buffer: Uint8Array, key: string) => {

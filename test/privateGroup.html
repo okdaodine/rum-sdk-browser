@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test private group</title>
+</head>
+<body>
+  
+  <script src="../dist/rum-sdk-browser.esm.js"></script>
+  <script>
+    console.log(RUM_SDK);
+
+    const seed = 'rum://seed?v=1\u0026e=1\u0026n=0\u0026b=AH8mrQ6dSaqq0h3nRF892Q\u0026c=HcBTTvgZTdI1MYJQ4wBMr7GlTwy6WHvqNJzEETbeh-8\u0026g=yFUel6N9Qp6ZtB9HiXhmFQ\u0026k=A8hfNDAUJzdndxfHbZ3BrcooEY5zpMy9ajEk18mnh81V\u0026s=uODPc-UG5xD3v-FGCdPnyuhELTLkaIo2hFU0Gj3XURoIDIXnLstv3PFToIkav_lkb5BBw-OvDVD8jUMjvO9JuAA\u0026t=FztTd4Cf8zg\u0026a=my_test_group\u0026y=test_app\u0026u=http%3A%2F%2F127.0.0.1%3A8000%3Fjwt%3DeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd0dyb3VwcyI6WyJjODU1MWU5Ny1hMzdkLTQyOWUtOTliNC0xZjQ3ODk3ODY2MTUiXSwiZXhwIjoxODMxNzAzNDYwLCJuYW1lIjoiYWxsb3ctYzg1NTFlOTctYTM3ZC00MjllLTk5YjQtMWY0Nzg5Nzg2NjE1Iiwicm9sZSI6Im5vZGUifQ.R9IL6FwfS8bIklTilfPERo-J1JrQRdrfy2L-GAglsas';
+    const group = RUM_SDK.cache.Group.add(seed);
+    const ethPrivateKey = '0xcc1bc29f7ae0163840309ec84b06f669d37c42d649778cf6a7034ab245301999';
+    const agePrivateKey = 'AGE-SECRET-KEY-1LGP788TRDU9YVP3G67PUF0SFW2HTAT2NP24KE37F08YP2XUACKCQ9SVUMF';
+    const agePublicKey = 'age1ytl626hqq0ulfdejq8a5n6056rh0va5egsmvamcfae9q5grtn9msxny5ls';
+
+    (async () => {
+      try {
+        const res = await RUM_SDK.chain.Trx.create({
+          data: {
+            type: "Create",
+            object : {
+              type: "Note",
+              id: "1",
+              content: "hello world for private group from rum sdk browser",
+            }
+          },
+          agePublicKeys: [ agePublicKey ],
+          groupId: group.groupId,
+          privateKey: ethPrivateKey
+        });
+        console.log(res);
+        const trxId = res.trx_id;
+        let stop = false;
+        while(!stop) {
+          await sleep(2000);
+          console.log('fetched content');
+          const contents = await RUM_SDK.chain.Content.list({
+            reverse: true,
+            count: 1,
+            groupId: group.groupId,
+          });
+          const content = contents[0];
+          if (content && content.TrxId === trxId) {
+            console.log({ content });
+            const encryptedBytes = RUM_SDK.utils.Base64.toUint8Array(content.Data);
+            const dataBytes = await RUM_SDK.utils.ageEncryption.decrypt_with_x25519(agePrivateKey, encryptedBytes);
+            const decrypteData = RUM_SDK.utils.typeTransform.uint8ArrayToString(dataBytes);
+            console.log({ decrypteData });
+            stop = true;
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+
+
+    function sleep (duration) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, duration);
+      });
+    }
+  </script>
+</body>
+</html>
