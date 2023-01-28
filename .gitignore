@@ -7,4 +7,5 @@ test/.cache
 test/dist
 test/yarn.lock
 local_storage_data
+localStorage
 proto.json

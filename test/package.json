@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev-public-group": "parcel publicGroup.html",
-    "dev-private-group": "parcel privateGroup.html"
+    "dev-private-group": "parcel privateGroup.html",
+    "dev-announce": "parcel announce.html"
   },
   "keywords": [],
   "author": "raimonfuns",
