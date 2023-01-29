@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-public-group": "parcel publicGroup.html",
-    "dev-private-group": "parcel privateGroup.html",
-    "dev-announce": "parcel announce.html"
+    "dev-publicGroup": "parcel publicGroup.html",
+    "dev-privateGroup": "parcel privateGroup.html",
+    "dev-announce": "parcel announce.html",
+    "dev-getEncryptPubKeys": "parcel getEncryptPubKeys.html"
   },
   "keywords": [],
   "author": "raimonfuns",
