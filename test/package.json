@@ -7,7 +7,9 @@
     "dev-publicGroup": "parcel publicGroup.html",
     "dev-privateGroup": "parcel privateGroup.html",
     "dev-announce": "parcel announce.html",
-    "dev-getEncryptPubKeys": "parcel getEncryptPubKeys.html"
+    "dev-getEncryptPubKeys": "parcel getEncryptPubKeys.html",
+    "dev-createTrxAndVerify": "parcel createTrxAndVerify.html",
+    "dev-verifyTrx": "parcel verifyTrx.html"
   },
   "keywords": [],
   "author": "raimonfuns",

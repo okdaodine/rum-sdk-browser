@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test public group</title>
+  <title>Create trx and verify</title>
 </head>
 <body>
   
@@ -43,8 +43,12 @@
           });
           const content = contents[0];
           if (content && content.TrxId === trxId) {
-            console.log({ content });
             stop = true;
+            const trx = await RUM_SDK.chain.Trx.get(content.GroupId, content.TrxId);
+            delete trx.Expired;
+            console.log({ trx });
+            const result = RUM_SDK.utils.verifyTrx(trx);
+            console.log(`[Verify Trx Result]:`, { result });
           }
         }
       } catch (err) {
