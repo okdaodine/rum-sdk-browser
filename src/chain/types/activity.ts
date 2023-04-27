@@ -23,8 +23,8 @@ export interface IObject {
 
 export interface IActivity extends IObject {
   actor?: IObject;
-  object?: IObject;
-  target?: IObject;
+  object?: IObject | IActivity;
+  target?: IObject | IActivity;
   result?: IObject;
   origin?: IObject;
 }
