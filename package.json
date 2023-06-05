@@ -1,10 +1,9 @@
 {
   "name": "rum-sdk-browser",
-  "version": "2.0.8",
+  "version": "2.0.16",
   "license": "MIT",
   "description": "rum sdk for browser",
   "author": "rum",
-  "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "module": "dist/rum-sdk-browser.esm.js",
   "files": [
@@ -15,13 +14,11 @@
     "node": ">=10"
   },
   "scripts": {
+    "build:tsc": "tsc",
     "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
+    "build": "tsdx build --format=esm",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
+    "prepare": "npm run build",
     "dev": "parcel index.html"
   },
   "husky": {

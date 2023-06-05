@@ -1,4 +1,4 @@
-import protobufjs from 'protobufjs'
+import protobufjs from 'protobufjs/light'
 
 export const create = ({
   type, payload
